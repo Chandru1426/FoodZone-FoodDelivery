@@ -1,0 +1,142 @@
+.my-orders-page {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  padding: 40px 8vw;
+  background-color: #f4f6f8;
+}
+
+.my-orders-container h2 {
+  margin-bottom: 25px;
+  color: #262626;
+  font-size: 28px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  border: 1px solid #eee;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.order-main-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.order-id {
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+  display: block;
+}
+
+.order-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 15px;
+}
+
+.order-summary p {
+  color: #555;
+  font-size: 15px;
+  margin: 0;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-total {
+  font-weight: 700;
+  font-size: 18px;
+  color: #262626;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-status {
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-green { color: #2ecc71; }
+.status-orange { color: #f39c12; }
+.status-red { color: #e74c3c; }
+.status-gray { color: #95a5a6; }
+
+.view-details-btn {
+  padding: 10px 20px;
+  background-color: #ff6347;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.view-details-btn:hover {
+  background-color: #e5533d;
+}
+
+@media (max-width: 600px) {
+  .my-orders-page {
+    padding: 20px 4vw;
+  }
+  
+  .order-card {
+    padding: 15px;
+  }
+  
+  .order-header {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .order-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .order-summary p {
+    max-width: 100%;
+    white-space: normal;
+  }
+}

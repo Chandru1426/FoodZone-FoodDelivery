@@ -1,0 +1,563 @@
+/* ========== NAVBAR LOCATION DISPLAY ========== */
+.location-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 280px;
+  min-width: 200px;
+}
+
+.location-container:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.location-icon {
+  font-size: 18px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.location-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.location-label {
+  font-size: 10px;
+  color: var(--gray);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.location-value {
+  font-size: 13px;
+  color: var(--dark);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========== MODAL ========== */
+.location-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.location-modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.location-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.location-modal-header h2 {
+  margin: 0;
+  color: var(--dark);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.location-close-btn {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: var(--gray);
+  line-height: 1;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.location-close-btn:hover {
+  background: #f0f0f0;
+  transform: rotate(90deg);
+}
+
+/* ========== DETECT LOCATION BUTTON ========== */
+.location-detect-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4285F4, #34A853);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+}
+
+.location-detect-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+}
+
+.location-detect-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ========== ADDRESS SEARCH ========== */
+.location-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.location-search input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.location-search input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.1);
+}
+
+.location-search button {
+  padding: 12px 24px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.location-search button:hover {
+  background: #e04f35;
+  transform: translateY(-2px);
+}
+
+/* ========== MAP CONTAINER ========== */
+.map-container {
+  margin: 20px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.map-skeleton {
+  height: 500px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray);
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ========== DISTANCE SLIDER ========== */
+.distance-slider-container {
+  margin: 25px 0;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 16px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.slider-header label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.radius-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  background: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.distance-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  outline: none;
+  background: linear-gradient(90deg, #4CAF50, #FFC107, #FF5722);
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.distance-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--primary);
+  transition: all 0.2s ease;
+}
+
+.distance-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.distance-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--primary);
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.nearby-count {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ========== SAVED ADDRESSES ========== */
+.saved-addresses {
+  margin: 25px 0;
+}
+
+.saved-addresses h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.addresses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.address-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.address-card:hover {
+  border-color: var(--primary);
+  transform: translateX(5px);
+}
+
+.address-card.active {
+  border-color: var(--primary);
+  background: #fff5f3;
+}
+
+.address-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.address-icon {
+  font-size: 24px;
+}
+
+.address-details {
+  flex: 1;
+}
+
+.address-details strong {
+  display: block;
+  font-size: 14px;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.address-details p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delete-address-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #ffebee;
+  color: #f44336;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-address-btn:hover {
+  background: #f44336;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* ========== SAVE ADDRESS BUTTON ========== */
+.save-address-btn {
+  width: 100%;
+  padding: 14px;
+  background: white;
+  color: var(--primary);
+  border: 2px dashed var(--primary);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.save-address-btn:hover {
+  background: #fff5f3;
+  border-style: solid;
+}
+
+/* ========== CONFIRM BUTTON ========== */
+.location-save-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--primary), #ff8c6b);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 99, 71, 0.3);
+}
+
+.location-save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 99, 71, 0.4);
+}
+
+.location-save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========== DARK MODE ========== */
+.app.dark .location-container {
+  background-color: #2a2a2a;
+}
+
+.app.dark .location-container:hover {
+  background-color: #333;
+}
+
+.app.dark .location-value {
+  color: #e0e0e0;
+}
+
+.app.dark .location-modal-content {
+  background-color: #1f1f1f;
+}
+
+.app.dark .location-modal-header h2 {
+  color: #e0e0e0;
+}
+
+.app.dark .location-close-btn:hover {
+  background: #333;
+}
+
+.app.dark .location-search input {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: white;
+}
+
+.app.dark .distance-slider-container {
+  background: #2a2a2a;
+}
+
+.app.dark .slider-header label {
+  color: #e0e0e0;
+}
+
+.app.dark .address-card {
+  background: #2a2a2a;
+  border-color: #444;
+}
+
+.app.dark .address-card:hover,
+.app.dark .address-card.active {
+  border-color: var(--primary);
+}
+
+.app.dark .address-details strong {
+  color: #e0e0e0;
+}
+
+.app.dark .save-address-btn {
+  background: #2a2a2a;
+  color: var(--primary);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .location-modal-content {
+    padding: 20px;
+    max-width: 95%;
+  }
+
+  .location-modal-header h2 {
+    font-size: 20px;
+  }
+
+  .map-container,
+  .map-skeleton {
+    height: 350px;
+  }
+
+  .distance-slider-container {
+    padding: 15px;
+  }
+
+  .address-card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .location-container {
+    max-width: 180px;
+    padding: 8px 12px;
+  }
+
+  .location-value {
+    max-width: 120px;
+    font-size: 12px;
+  }
+
+  .location-modal-content {
+    padding: 15px;
+  }
+
+  .location-search {
+    flex-direction: column;
+  }
+
+  .location-search button {
+    width: 100%;
+  }
+
+  .map-container,
+  .map-skeleton {
+    height: 300px;
+  }
+}
