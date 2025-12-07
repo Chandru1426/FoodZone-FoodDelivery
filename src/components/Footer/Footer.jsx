@@ -122,7 +122,7 @@ const Footer = () => {
               </li>
               <li>
                 <span className="contact-icon">✉️</span>
-                <span>contact@foodzone.com</span>
+                <span><a href="http://mailto:contact@foodzone.com">contact@foodzone.com</a></span>
               </li>
               <li>
                 <span className="contact-icon">📍</span>
