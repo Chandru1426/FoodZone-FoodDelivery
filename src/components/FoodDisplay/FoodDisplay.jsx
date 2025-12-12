@@ -3,7 +3,7 @@ import "./FoodDisplay.css";
 import { StoreContext } from "../../context/StoreContext";
 import FoodItem from "../FoodItem/FoodItem";
 
-const FoodDisplay = ({ category }) => {
+const FoodDisplay = ({ category, searchTerm }) => {
   const { food_list } = useContext(StoreContext);
   const [sortBy, setSortBy] = useState("default");
   const [filterBy, setFilterBy] = useState("all");
@@ -12,6 +12,9 @@ const FoodDisplay = ({ category }) => {
   // Filter and Sort Logic
   let filteredFoods = food_list.filter((item) => {
     if (category !== "All" && category !== item.category) return false;
+    
+    // Search filter
+    if (searchTerm && !item.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
     
     if (filterBy === "vegetarian") return item.category === "Salad" || item.category === "Pure Veg";
     if (filterBy === "non-veg") return item.category !== "Salad" && item.category !== "Pure Veg";
